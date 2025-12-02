@@ -1,3 +1,4 @@
+// ----------------- FAVOURITE NEWS -----------------
 function updateFavouriteButtons() {
     const favs = JSON.parse(localStorage.getItem("favourites")) || [];
     document.querySelectorAll(".fav-btn").forEach(btn => {
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Load favourites page
+    // ----------------- FAVOURITES PAGE -----------------
     if (window.location.pathname.includes("favourites")) {
         const container = document.getElementById("fav-container");
         const favs = JSON.parse(localStorage.getItem("favourites")) || [];
@@ -47,7 +48,20 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
         });
     }
+
+    // ----------------- DARK/LIGHT MODE -----------------
+    const toggle = document.getElementById("theme-toggle");
+    if (toggle) {
+        // Load saved theme
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        if (savedTheme === "light") {
+            document.body.classList.add("light");
+        }
+
+        toggle.addEventListener("click", () => {
+            document.body.classList.toggle("light");
+            const theme = document.body.classList.contains("light") ? "light" : "dark";
+            localStorage.setItem("theme", theme);
+        });
+    }
 });
-
-
-
