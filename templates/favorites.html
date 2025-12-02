@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ Favourites</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<script defer src="{{ url_for('static', filename='script.js') }}"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>❤️ Favourite News</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
 
 <header>
-  <h1>❤️ Your Favourites</h1>
-  <a href="/">⬅ Back to Home</a>
+  <h1>❤️ Favourite News</h1>
+  <nav>
+    <a href="/">Home</a>
+    <button id="theme-toggle">🌓</button>
+  </nav>
 </header>
 
-<div id="fav-container" class="news-container"></div>
+<div id="fav-container" class="news-container">
+  <!-- Favourite news cards will be injected here by script.js -->
+</div>
+
+{% if not articles %}
+<p class="message" style="text-align:center; margin-top:20px;">
+  No favourites yet. Add some from the home page!
+</p>
+{% endif %}
 
 </body>
 </html>
