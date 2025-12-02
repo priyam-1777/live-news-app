@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  background: #121212;
+  color: white;
+}
+
+header {
+  background: #1f1f1f;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a {
+  color: #00eaff;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.search-box input {
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #00b2ff;
+  color: white;
+  margin-left: 10px;
+}
+
+.news-container {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.news-card {
+  background: #242424;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+  transition: transform .3s;
+}
+
+.news-card:hover {
+  transform: scale(1.03);
+}
+
+.news-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fav-btn.active {
+  color: red;
+}
+
+.fade-in {
+  animation: fade 0.6s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message {
+  text-align: center;
+  margin-top: 10px;
+  color: #ff5252;
+}
+
+

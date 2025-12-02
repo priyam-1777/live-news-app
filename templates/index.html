@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📰 Live News</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+
+<header>
+  <h1>📰 Live News</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/favourites">❤️ Favourites</a>
+  </nav>
+</header>
+
+<form action="/search" method="get" class="search-box">
+  <input type="text" name="query" placeholder="Search news..." value="{{ query }}">
+  <button type="submit">Search</button>
+</form>
+
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+{% if search %}
+<p class="result-label">Showing search results for: <strong>{{ query }}</strong></p>
+{% endif %}
+
+<div class="news-container">
+  {% for news in articles %}
+  <div class="news-card fade-in">
+    <img src="{{ news.urlToImage or 'https://via.placeholder.com/400x200?text=No+Image' }}" alt="News Image">
+    <h3>{{ news.title }}</h3>
+    <p>{{ news.description or '' }}</p>
+
+    <div class="actions">
+      <a href="{{ news.url }}" target="_blank" class="read-btn">Read More</a>
+      <button 
+        class="fav-btn" 
+        data-title="{{ news.title|escape }}" 
+        data-url="{{ news.url|escape }}" 
+        data-img="{{ news.urlToImage|default('')|escape }}">
+        🤍
+      </button>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+</body>
+</html>
+
+
+
+
