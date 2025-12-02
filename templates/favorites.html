@@ -12,18 +12,40 @@
 <header>
   <h1>❤️ Favourite News</h1>
   <nav>
-    <a href="/">Home</a>
+    <a href="/">🏠 Home</a>
     <button id="theme-toggle">🌓</button>
   </nav>
 </header>
 
 <div id="fav-container" class="news-container">
-  <!-- Favourite news cards will be injected here by script.js -->
+  <!-- Favourite items will appear here (JS generates them) -->
 </div>
 
-<p id="no-favs-message" class="message" style="text-align:center; margin-top:20px; display:none;">
-  No favourites yet. Add some from the home page!
+<p id="no-fav-msg" class="message" style="text-align:center; margin-top:20px; display:none;">
+  No favourites yet. Go back and add some ❤️
 </p>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("fav-container");
+      const noMsg = document.getElementById("no-fav-msg");
+      let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+
+      if (favs.length === 0) {
+          noMsg.style.display = "block";
+          return;
+      }
+
+      favs.forEach(news => {
+          container.innerHTML += `
+          <div class="news-card fade-in">
+              <img src="${news.img || 'https://via.placeholder.com/400x200?text=No+Image'}" />
+              <h3>${news.title}</h3>
+              <a href="${news.url}" target="_blank" class="read-btn">Read More</a>
+          </div>`;
+      });
+  });
+</script>
 
 </body>
 </html>
