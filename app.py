@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 import requests
-
+import os  
 app = Flask(__name__)
 
-API_KEY = "2df1633667474313ad3aa33a829f302f"
+API_KEY = os.getenv("API_KEY")
 
 def fetch_news(query=None):
     if query:
