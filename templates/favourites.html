@@ -17,36 +17,32 @@
   </nav>
 </header>
 
-<div id="fav-container" class="news-container">
-  <!-- Favourite items will appear here (JS generates them) -->
-</div>
+<div id="fav-container" class="news-container"></div>
 
-<p id="no-fav-msg" class="message" style="text-align:center; margin-top:20px; display:none;">
+<p id="no-fav-msg" class="message" style="display:none; text-align:center;">
   No favourites yet. Go back and add some ❤️
 </p>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-      const container = document.getElementById("fav-container");
-      const noMsg = document.getElementById("no-fav-msg");
-      let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("fav-container");
+    const favs = JSON.parse(localStorage.getItem("favourites")) || [];
 
-      if (favs.length === 0) {
-          noMsg.style.display = "block";
-          return;
-      }
+    if (favs.length === 0) {
+        document.getElementById("no-fav-msg").style.display = "block";
+        return;
+    }
 
-      favs.forEach(news => {
-          container.innerHTML += `
-          <div class="news-card fade-in">
-              <img src="${news.img || 'https://via.placeholder.com/400x200?text=No+Image'}" />
-              <h3>${news.title}</h3>
-              <a href="${news.url}" target="_blank" class="read-btn">Read More</a>
-          </div>`;
-      });
-  });
+    favs.forEach(news => {
+        container.innerHTML += `
+        <div class="news-card fade-in">
+            <img src="${news.img || 'https://via.placeholder.com/400x200?text=No+Image'}">
+            <h3>${news.title}</h3>
+            <a href="${news.url}" target="_blank" class="read-btn">Read More</a>
+        </div>`;
+    });
+});
 </script>
 
 </body>
 </html>
-
