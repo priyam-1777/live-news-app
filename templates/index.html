@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📰 Live News</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+  <script type="module" defer src="{{ url_for('static', filename='script.js') }}?v=2"></script>
 </head>
 <body>
 
@@ -14,7 +14,7 @@
   <nav>
     <a href="/">Home</a>
     <a href="/favourites">❤️ Favourites</a>
-    <button id="theme-toggle">🌙 Theme</button>
+    <button id="theme-toggle">🌙 Dark Mode</button>
   </nav>
 </header>
 
@@ -23,11 +23,13 @@
   <button type="submit">Search</button>
 </form>
 
-<!-- NEW: Suggestion Tags -->
+<!-- Suggested topics -->
 <div class="suggestion-tags">
-  {% for topic in ["India", "Sports", "Technology", "Entertainment", "World", "AI", "Business", "Health"] %}
-    <a href="/search?query={{ topic }}" class="tag">{{ topic }}</a>
-  {% endfor %}
+  <span class="tag" data-query="politics">Politics</span>
+  <span class="tag" data-query="technology">Technology</span>
+  <span class="tag" data-query="science">Science</span>
+  <span class="tag" data-query="wildlife">Wildlife</span>
+  <span class="tag" data-query="environment">Environment</span>
 </div>
 
 {% if message %}
@@ -35,7 +37,7 @@
 {% endif %}
 
 {% if search %}
-<p class="result-label">Showing results for: <strong>{{ query }}</strong></p>
+<p class="result-label">Showing search results for: <strong>{{ query }}</strong></p>
 {% endif %}
 
 <div class="news-container">
@@ -47,9 +49,10 @@
 
     <div class="actions">
       <a href="{{ news.url }}" target="_blank" class="read-btn">Read More</a>
-      <button class="fav-btn"
-        data-title="{{ news.title|escape }}"
-        data-url="{{ news.url|escape }}"
+      <button 
+        class="fav-btn" 
+        data-title="{{ news.title|escape }}" 
+        data-url="{{ news.url|escape }}" 
         data-img="{{ news.urlToImage|default('')|escape }}">
         🤍
       </button>
@@ -60,3 +63,4 @@
 
 </body>
 </html>
+
