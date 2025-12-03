@@ -14,7 +14,7 @@
   <nav>
     <a href="/">Home</a>
     <a href="/favourites">❤️ Favourites</a>
-    <button id="theme-toggle">🌙 Dark Mode</button>
+    <button id="theme-toggle">🌙 Theme</button>
   </nav>
 </header>
 
@@ -23,12 +23,19 @@
   <button type="submit">Search</button>
 </form>
 
+<!-- NEW: Suggestion Tags -->
+<div class="suggestion-tags">
+  {% for topic in ["India", "Sports", "Technology", "Entertainment", "World", "AI", "Business", "Health"] %}
+    <a href="/search?query={{ topic }}" class="tag">{{ topic }}</a>
+  {% endfor %}
+</div>
+
 {% if message %}
 <p class="message">{{ message }}</p>
 {% endif %}
 
 {% if search %}
-<p class="result-label">Showing search results for: <strong>{{ query }}</strong></p>
+<p class="result-label">Showing results for: <strong>{{ query }}</strong></p>
 {% endif %}
 
 <div class="news-container">
@@ -40,10 +47,9 @@
 
     <div class="actions">
       <a href="{{ news.url }}" target="_blank" class="read-btn">Read More</a>
-      <button 
-        class="fav-btn" 
-        data-title="{{ news.title|escape }}" 
-        data-url="{{ news.url|escape }}" 
+      <button class="fav-btn"
+        data-title="{{ news.title|escape }}"
+        data-url="{{ news.url|escape }}"
         data-img="{{ news.urlToImage|default('')|escape }}">
         🤍
       </button>
@@ -54,7 +60,3 @@
 
 </body>
 </html>
-
-
-
-
