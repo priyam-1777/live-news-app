@@ -1,25 +1,31 @@
 /* ---------- Base ---------- */
 body {
   margin: 0;
-  font-family: Poppins, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: #121212;
-  color: white;
+  color: #fff;
   transition: background 0.3s, color 0.3s;
 }
 
 header {
   background: #1f1f1f;
-  padding: 10px 20px;
+  padding: 15px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin: 0;
 }
 
 header a {
   color: #00eaff;
   text-decoration: none;
-  margin-left: 10px;
+  margin-left: 15px;
   transition: color 0.3s;
 }
 
@@ -31,10 +37,10 @@ header a:hover {
   background: none;
   border: 2px solid #00eaff;
   color: #00eaff;
-  padding: 5px 10px;
-  border-radius: 8px;
+  padding: 6px 14px;
+  border-radius: 25px;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 15px;
   transition: all 0.3s;
 }
 
@@ -43,6 +49,7 @@ header a:hover {
   color: #121212;
 }
 
+/* ---------- Search Box ---------- */
 .search-box {
   display: flex;
   justify-content: center;
@@ -52,64 +59,118 @@ header a:hover {
 
 .search-box input {
   width: 60%;
-  max-width: 400px;
-  padding: 10px;
-  border-radius: 10px;
+  max-width: 450px;
+  padding: 12px 15px;
+  border-radius: 25px;
   border: none;
   margin-bottom: 10px;
+  font-size: 1rem;
 }
 
 button {
-  padding: 10px 15px;
-  border-radius: 10px;
+  padding: 12px 18px;
+  border-radius: 25px;
   border: none;
   cursor: pointer;
-  background: #00b2ff;
+  background: #7c66e7;
   color: white;
   margin-left: 10px;
-  transition: background 0.3s;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
 }
 
 button:hover {
+  background: #314a56;
+  transform: translateY(-2px);
+}
+
+/* ---------- Suggestion Tags ---------- */
+.suggestion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 20px;
+}
+
+.tag {
+  background: #00b2ff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.tag:hover {
   background: #0088cc;
 }
 
+body.light .tag {
+  background: #0077aa;
+}
+
+body.light .tag:hover {
+  background: #005f88;
+}
+
+/* ---------- News Cards ---------- */
 .news-container {
   margin: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 15px;
+  gap: 18px;
 }
 
 .news-card {
   background: #242424;
-  border-radius: 10px;
+  border-radius: 15px;
   overflow: hidden;
-  padding: 10px;
-  transition: transform .3s, background .3s;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .news-card:hover {
   transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 .news-card img {
   width: 100%;
-  height: 160px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 8px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.news-card h3 {
+  font-size: 1.1rem;
+  margin: 12px 10px 6px;
+  line-height: 1.3;
+}
+
+.news-card p {
+  font-size: 0.95rem;
+  margin: 0 10px 10px;
+  color: #ccc;
+  flex-grow: 1;
 }
 
 .actions {
-  margin-top: 10px;
+  margin: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .fav-btn {
   background: none;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: color 0.3s, transform 0.2s;
 }
@@ -119,9 +180,18 @@ button:hover {
 }
 
 .fav-btn.active {
-  color: red;
+  color: #ff4d6d;
 }
 
+/* ---------- Messages & Labels ---------- */
+.message, .result-label {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 500;
+  color: #ff5252;
+}
+
+/* ---------- Animations ---------- */
 .fade-in {
   animation: fade 0.6s ease-in-out;
 }
@@ -129,12 +199,6 @@ button:hover {
 @keyframes fade {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.message {
-  text-align: center;
-  margin-top: 10px;
-  color: #ff5252;
 }
 
 /* ---------- Light Mode ---------- */
@@ -164,9 +228,52 @@ body.light #theme-toggle:hover {
 body.light .news-card {
   background: #fff;
   color: #222;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 body.light .fav-btn.active {
-  color: red;
+  color: #ff4d6d;
 }
 
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 768px) {
+  .search-box input {
+    width: 80%;
+  }
+
+  .news-card img {
+    height: 160px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 500px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .search-box input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .tag {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .news-card img {
+    height: 140px;
+  }
+
+  button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}
