@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>❤️ Favourite News</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+  <script type="module" defer src="{{ url_for('static', filename='script.js') }}?v=2"></script>
 </head>
 <body>
 
@@ -17,32 +17,13 @@
   </nav>
 </header>
 
-<div id="fav-container" class="news-container"></div>
+<div id="fav-container" class="news-container">
+  <!-- Favourite items will appear here -->
+</div>
 
-<p id="no-fav-msg" class="message" style="display:none; text-align:center;">
+<p id="no-fav-msg" class="message" style="text-align:center; margin-top:20px; display:none;">
   No favourites yet. Go back and add some ❤️
 </p>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("fav-container");
-    const favs = JSON.parse(localStorage.getItem("favourites")) || [];
-
-    if (favs.length === 0) {
-        document.getElementById("no-fav-msg").style.display = "block";
-        return;
-    }
-
-    favs.forEach(news => {
-        container.innerHTML += `
-        <div class="news-card fade-in">
-            <img src="${news.img || 'https://via.placeholder.com/400x200?text=No+Image'}">
-            <h3>${news.title}</h3>
-            <a href="${news.url}" target="_blank" class="read-btn">Read More</a>
-        </div>`;
-    });
-});
-</script>
 
 </body>
 </html>
